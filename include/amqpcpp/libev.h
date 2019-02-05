@@ -354,7 +354,7 @@ private:
 
             // find the earliest thing that expires
             // @todo does this work?
-            _timer.repeat = std::min(_next, _expire) - now;
+            _timer.repeat = std::max(1.0, std::min(_next, _expire) - now);
             
             // restart the timer
             ev_timer_again(_loop, &_timer);
